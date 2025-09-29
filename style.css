@@ -84,23 +84,6 @@ body {
   color: #555;
 }
 
-.about-image {
-  flex-shrink: 0;
-  width: 200px;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.profile-pic {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #7873f5;
-}
-
 /* Skills Section */
 .skills {
   padding: 60px 20px;
