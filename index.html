@@ -12,54 +12,91 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <img src="images/profile.png" alt="Profile Picture" class="profile-pic">
+    <img src="images/profile.png" alt="Profile Picture of Gester" class="profile-pic">
     <h1>Hi, I’m Gester! 👋</h1>
     <p class="tagline">Welcome to my portfolio!</p>
-    <p>Fun Fact: No Fun Fact</p>
+    <p>Fun Fact: I love coding and learning new technologies every day!</p>
     <a href="#projects" class="btn">View My Projects</a>
   </section>
 
-<script>
-document.querySelector('.btn').addEventListener('click', function(e) {
-  e.preventDefault();
-  document.querySelector('#projects').scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
-});
-</script>
+  <script>
+    document.querySelector('.btn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector('#projects').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    });
+  </script>
 
+  <!-- About Me Section -->
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>I’m a passionate developer with a love for solving problems through code. I specialize in web and mobile development, focusing on front-end technologies and user experience. My goal is to create smooth, efficient, and beautiful applications that make users' lives easier.</p>
+    <p>When I'm not coding, I enjoy learning about new tech trends, playing video games, and experimenting with creative design projects!</p>
+  </section>
 
-<section id="projects" class="projects">
-  <h2>My Projects</h2>
-  <div class="project-grid">
+  <!-- Skills Section -->
+  <section id="skills" class="skills">
+    <h2>Skills & Technologies</h2>
+    <div class="skills-list">
+      <div class="skill">HTML5</div>
+      <div class="skill">CSS3</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">React</div>
+      <div class="skill">React Native</div>
+      <div class="skill">Node.js</div>
+      <div class="skill">Express.js</div>
+      <div class="skill">MongoDB</div>
+      <div class="skill">Git</div>
+    </div>
+  </section>
 
-    <a href="https://github.com/soggybobby/ReactNativeProject.git" target="_blank" class="card">
-      🎨 ReactNativeProject
-    </a>
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <a href="https://github.com/soggybobby/ReactNativeProject.git" target="_blank" class="card">
+        🎨 ReactNativeProject
+        <p>Mobile app built with React Native, focused on creating interactive user interfaces.</p>
+      </a>
 
-    <a href="https://github.com/soggybobby/Two-Systems-API-Integration.git" target="_blank" class="card">
-      💻 Two-Systems API Integration
-    </a>
+      <a href="https://github.com/soggybobby/Two-Systems-API-Integration.git" target="_blank" class="card">
+        💻 Two-Systems API Integration
+        <p>API integration between two systems to synchronize real-time data using RESTful APIs.</p>
+      </a>
 
-    <a href="https://github.com/soggybobby/GSAM-App.git" target="_blank" class="card">
-      📱 GSAM-App
-    </a>
+      <a href="https://github.com/soggybobby/GSAM-App.git" target="_blank" class="card">
+        📱 GSAM-App
+        <p>Mobile app built with React Native to manage and track stocks for GSAM Store.</p>
+      </a>
+    </div>
+  </section>
 
-  </div>
-</section>
-
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <h2>What Others Say</h2>
+    <div class="testimonial-card">
+      <p>"Gester is one of the most talented developers I've worked with. His attention to detail and problem-solving skills are unmatched!"</p>
+      <p><strong>- Alex, Project Manager</strong></p>
+    </div>
+    <div class="testimonial-card">
+      <p>"I highly recommend Gester for any development project. His ability to adapt and learn new technologies is incredible."</p>
+      <p><strong>- Emma, Lead Developer</strong></p>
+    </div>
+  </section>
 
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <h2>Reach Me</h2>
-    <p>📧 <a href="mailto:your.email@example.com">samsongester@gmail.com</a></p>
-    <p>🔗 <a href="https://github.com/soggybobby">GitHub</a>
+    <p>📧 <a href="mailto:samsongester@gmail.com">samsongester@gmail.com</a></p>
+    <p>🔗 <a href="https://github.com/soggybobby">GitHub</a></p>
   </section>
 
   <!-- Footer -->
   <footer>
-    © 2025 My Portfolio. All rights reserved.
+    <p>© 2025 Gester. Crafted with ❤️</p>
+    <p>Connect with me: <a href="https://www.linkedin.com/in/gester" target="_blank">LinkedIn</a> | <a href="https://twitter.com/gester" target="_blank">Twitter</a></p>
   </footer>
 
 </body>
