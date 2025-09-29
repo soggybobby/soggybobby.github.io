@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="images/profile.png" alt="Profile Picture" class="profile-pic">
+    <h1>Hi, I’m Gester! 👋</h1>
+    <p class="tagline">Welcome to my portfolio!</p>
+    <p>Fun Fact: No Fun Fact</p>
+    <a href="#projects" class="btn">View My Projects</a>
+  </section>
+
+<script>
+document.querySelector('.btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  document.querySelector('#projects').scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
+});
+</script>
+
+
+<section id="projects" class="projects">
+  <h2>My Projects</h2>
+  <div class="project-grid">
+
+    <a href="https://github.com/soggybobby/ReactNativeProject.git" target="_blank" class="card">
+      🎨 ReactNativeProject
+    </a>
+
+    <a href="https://github.com/soggybobby/Two-Systems-API-Integration.git" target="_blank" class="card">
+      💻 Two-Systems API Integration
+    </a>
+
+    <a href="https://github.com/soggybobby/GSAM-App.git" target="_blank" class="card">
+      📱 GSAM-App
+    </a>
+
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <h2>Reach Me</h2>
+    <p>📧 <a href="mailto:your.email@example.com">samsongester@gmail.com</a></p>
+    <p>🔗 <a href="https://github.com/soggybobby">GitHub</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 My Portfolio. All rights reserved.
+  </footer>
+
+</body>
+</html>
