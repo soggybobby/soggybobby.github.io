@@ -55,14 +55,52 @@ body {
 /* About Me Section */
 .about {
   padding: 60px 20px;
+  background: #f9f9f9;
   text-align: center;
-  background: #f4f4f4;
 }
 
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
+
+.about-text {
+  max-width: 600px;
+  text-align: left;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #555;
+}
+
+.about-image {
+  flex-shrink: 0;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #7873f5;
+}
+
 
 /* Skills Section */
 .skills {
@@ -121,35 +159,6 @@ body {
 .card:hover {
   transform: translateY(-8px);
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-}
-
-/* Testimonials Section */
-.testimonials {
-  padding: 60px 20px;
-  background: #f9f9f9;
-  text-align: center;
-}
-
-.testimonial-card {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 10px;
-  display: inline-block;
-  width: 100%;
-  max-width: 400px;
-}
-
-.testimonial-card p {
-  font-style: italic;
-  color: #555;
-}
-
-.testimonial-card strong {
-  display: block;
-  margin-top: 10px;
-  font-weight: bold;
 }
 
 /* Contact Section */
