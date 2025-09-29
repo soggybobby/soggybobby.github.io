@@ -101,7 +101,6 @@ body {
   border: 4px solid #7873f5;
 }
 
-
 /* Skills Section */
 .skills {
   padding: 60px 20px;
@@ -115,9 +114,12 @@ body {
 }
 
 .skills-list {
-  display: grid;
+  display: inline-grid; /* changed from grid to inline-grid */
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 10px;
+  justify-content: center; /* centers grid items */
+  max-width: 600px; /* optional max width */
+  margin: 0 auto; /* center the grid container */
 }
 
 .skill {
