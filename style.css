@@ -52,7 +52,46 @@ body {
   color: white;
 }
 
-/* Projects */
+/* About Me Section */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Skills Section */
+.skills {
+  padding: 60px 20px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.skills h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.skill {
+  background: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Projects Section */
 .projects {
   padding: 80px 20px;
   background: #f9f9f9;
@@ -84,7 +123,36 @@ body {
   box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* Contact */
+/* Testimonials Section */
+.testimonials {
+  padding: 60px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.testimonial-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  color: #555;
+}
+
+.testimonial-card strong {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Contact Section */
 .contact {
   padding: 60px 20px;
   text-align: center;
@@ -96,4 +164,15 @@ footer {
   color: white;
   text-align: center;
   padding: 15px;
+}
+
+footer a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
