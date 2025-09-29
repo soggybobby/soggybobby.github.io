@@ -109,26 +109,38 @@ body {
 }
 
 .skills h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+  font-weight: 700;
 }
 
 .skills-list {
-  display: inline-grid; /* changed from grid to inline-grid */
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 10px;
-  justify-content: center; /* centers grid items */
-  max-width: 600px; /* optional max width */
-  margin: 0 auto; /* center the grid container */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 15px;
+  justify-content: center;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .skill {
-  background: #333;
+  background: #7873f5;
   color: white;
-  padding: 10px;
-  border-radius: 5px;
+  padding: 12px 25px;
+  border-radius: 50px; /* pill shape */
   font-weight: 600;
   text-align: center;
+  box-shadow: 0 4px 8px rgba(120, 115, 245, 0.3);
+  cursor: default;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  user-select: none;
+}
+
+.skill:hover {
+  background-color: #5a4fcf;
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(90, 79, 207, 0.5);
 }
 
 /* Projects Section */
