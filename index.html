@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSAM Enterprises &amp; HG Marketing — Neighborhood Stores</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F3EFE6;
+    --surface:#FFFFFF;
+    --ink:#2A2622;
+    --ink-soft:#6B6154;
+    --line:#E2DBCB;
+
+    --gsam:#2B4C6F;
+    --gsam-deep:#1E3850;
+    --gsam-soft:#E4ECF2;
+
+    --hg:#3F5D3A;
+    --hg-deep:#2E4529;
+    --hg-soft:#E9EEE4;
+
+    --status-in-bg:#E4F0E1; --status-in-text:#3B6B34;
+    --status-low-bg:#FBEFD9; --status-low-text:#96661B;
+    --status-out-bg:#F1E4E1; --status-out-text:#9C4A3B;
+
+    --radius:14px;
+    --shadow:0 2px 10px rgba(42,38,34,0.06);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1240px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    gap:20px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:12px;
+  }
+  .brand-mark{
+    position:relative;
+    width:46px; height:46px;
+    flex-shrink:0;
+  }
+  .brand-mark svg{ width:100%; height:100%; }
+  .brand-text .name{
+    font-size:19px; line-height:1.1; margin:0;
+  }
+  .brand-text .tag{
+    font-size:12px; color:var(--ink-soft); margin:2px 0 0;
+  }
+  nav.mainnav{
+    display:flex; align-items:center; gap:28px;
+  }
+  nav.mainnav a{
+    text-decoration:none;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--ink);
+    opacity:0.75;
+    transition:opacity .15s ease;
+  }
+  nav.mainnav a:hover{ opacity:1; }
+  .header-actions{
+    display:flex; align-items:center; gap:18px;
+  }
+  .signin-btn{
+    border:1.5px solid var(--ink);
+    background:transparent;
+    color:var(--ink);
+    padding:9px 18px;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  .signin-btn:hover{ background:var(--ink); color:var(--surface); }
+
+  .nav-toggle{ display:none; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:1240px; margin:0 auto;
+    padding:52px 28px 34px;
+    display:flex; align-items:flex-end; justify-content:space-between; gap:30px;
+    flex-wrap:wrap;
+  }
+  .hero h1{
+    font-size:clamp(28px,3.6vw,42px);
+    margin:0 0 10px;
+    max-width:640px;
+    line-height:1.15;
+  }
+  .hero p{
+    margin:0; color:var(--ink-soft); font-size:15.5px; max-width:480px;
+  }
+  .hero-badges{
+    display:flex; gap:10px; flex-wrap:wrap;
+  }
+  .hero-badge{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:8px 14px;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    display:flex; align-items:center; gap:6px;
+  }
+  .hero-badge .dot{ width:6px;height:6px;border-radius:50%; background:var(--ink-soft);}
+
+  /* ---------- Store panels ---------- */
+  .stores{
+    max-width:1240px; margin:0 auto;
+    padding:10px 28px 60px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  @media (max-width:900px){
+    .stores{ grid-template-columns:1fr; }
+    nav.mainnav{ display:none; }
+  }
+
+  .store-panel{
+    background:var(--surface);
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    box-shadow:var(--shadow);
+  }
+
+  .awning{
+    position:relative;
+    padding:26px 26px 40px;
+    color:#fff;
+  }
+  .awning.gsam{
+    background:linear-gradient(180deg,var(--gsam) 0%, var(--gsam-deep) 100%);
+  }
+  .awning.hg{
+    background:linear-gradient(180deg,var(--hg) 0%, var(--hg-deep) 100%);
+  }
+  .awning-stripes{
+    position:absolute; left:0; right:0; bottom:-1px; height:16px;
+    background-size:28px 16px;
+    background-repeat:repeat-x;
+  }
+  .awning.gsam .awning-stripes{
+    background-image:repeating-linear-gradient(90deg,
+      rgba(255,255,255,0.9) 0 14px,
+      transparent 14px 28px);
+    mask-image:linear-gradient(180deg,#000 60%, transparent 100%);
+    clip-path:polygon(0 0,100% 0,100% 60%,92% 100%,84% 60%,76% 100%,68% 60%,60% 100%,52% 60%,44% 100%,36% 60%,28% 100%,20% 60%,12% 100%,4% 60%,0 100%);
+  }
+  .awning.hg .awning-stripes{
+    background-image:repeating-linear-gradient(90deg,
+      rgba(255,255,255,0.9) 0 14px,
+      transparent 14px 28px);
+    clip-path:polygon(0 0,100% 0,100% 60%,92% 100%,84% 60%,76% 100%,68% 60%,60% 100%,52% 60%,44% 100%,36% 60%,28% 100%,20% 60%,12% 100%,4% 60%,0 100%);
+  }
+
+  .store-heading{
+    display:flex; align-items:center; gap:14px;
+  }
+  .store-icon{
+    width:44px;height:44px; flex-shrink:0;
+    background:rgba(255,255,255,0.16);
+    border:1.5px solid rgba(255,255,255,0.5);
+    border-radius:10px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .store-icon svg{ width:24px;height:24px; }
+  .store-heading h2{ margin:0; font-size:22px; color:#fff; }
+  .store-heading .sub{ margin:2px 0 0; font-size:13px; color:rgba(255,255,255,0.85); }
+
+  .store-body{
+    padding:20px 24px 26px;
+    display:flex; flex-direction:column;
+    gap:16px;
+    flex:1;
+  }
+
+  .search-row{
+    display:flex; gap:10px;
+  }
+  .search-row input[type="text"]{
+    flex:1;
+    padding:10px 14px;
+    border-radius:10px;
+    border:1.5px solid var(--line);
+    font-size:14px;
+    background:var(--bg);
+    color:var(--ink);
+  }
+  .search-row input[type="text"]:focus{
+    outline:2px solid var(--gsam);
+    outline-offset:1px;
+  }
+  .hg-panel .search-row input[type="text"]:focus{
+    outline:2px solid var(--hg);
+  }
+
+  .filter-pills{
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .pill{
+    border:1.5px solid var(--line);
+    background:var(--surface);
+    color:var(--ink-soft);
+    font-size:13px;
+    font-weight:600;
+    padding:7px 14px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .gsam-panel .pill.active{ background:var(--gsam-soft); border-color:var(--gsam); color:var(--gsam-deep); }
+  .hg-panel .pill.active{ background:var(--hg-soft); border-color:var(--hg); color:var(--hg-deep); }
+
+  .result-count{
+    font-size:12.5px; color:var(--ink-soft);
+  }
+
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+  @media (max-width:520px){
+    .product-grid{ grid-template-columns:1fr; }
+  }
+
+  .product-card{
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:14px;
+    display:flex; flex-direction:column; gap:10px;
+    background:var(--bg);
+  }
+  .product-thumb{
+    width:100%;
+    aspect-ratio:1.4/1;
+    border-radius:9px;
+    display:flex; align-items:center; justify-content:center;
+    border:1px dashed var(--line);
+  }
+  .gsam-panel .product-thumb{ background:var(--gsam-soft); }
+  .hg-panel .product-thumb{ background:var(--hg-soft); }
+  .product-thumb svg{ width:34px; height:34px; }
+  .gsam-panel .product-thumb svg{ stroke:var(--gsam-deep); }
+  .hg-panel .product-thumb svg{ stroke:var(--hg-deep); }
+
+  .product-name{
+    font-size:14px; font-weight:600; margin:0; line-height:1.3;
+  }
+  .product-cat{
+    font-size:11.5px; color:var(--ink-soft); margin:-6px 0 0;
+    text-transform:uppercase; letter-spacing:.04em;
+  }
+  .product-bottom{
+    display:flex; align-items:center; justify-content:space-between; margin-top:auto;
+  }
+  .product-price{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:600; font-size:14px;
+  }
+  .badge{
+    font-size:10.5px; font-weight:600;
+    padding:4px 9px; border-radius:999px;
+    white-space:nowrap;
+  }
+  .badge.in{ background:var(--status-in-bg); color:var(--status-in-text); }
+  .badge.low{ background:var(--status-low-bg); color:var(--status-low-text); }
+  .badge.out{ background:var(--status-out-bg); color:var(--status-out-text); }
+
+  .empty-state{
+    text-align:center; padding:30px 10px; color:var(--ink-soft); font-size:13.5px;
+    grid-column:1/-1;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#EDE8DD;
+    padding:44px 28px 26px;
+  }
+  .footer-inner{
+    max-width:1240px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:32px;
+  }
+  @media (max-width:760px){
+    .footer-inner{ grid-template-columns:1fr; }
+  }
+  .footer-inner h3{
+    font-size:15px; margin:0 0 10px; color:#fff;
+  }
+  .footer-inner p, .footer-inner a{
+    font-size:13.5px; line-height:1.7; color:#C9C2B2; text-decoration:none; margin:0;
+  }
+  .footer-store-dot{
+    display:inline-block; width:8px;height:8px;border-radius:50%; margin-right:8px;
+  }
+  .footer-bottom{
+    max-width:1240px; margin:30px auto 0;
+    border-top:1px solid rgba(255,255,255,0.12);
+    padding-top:18px;
+    font-size:12px; color:#8F8A7C;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  /* ---------- Sign-in panel ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(42,38,34,0.45);
+    display:none; align-items:center; justify-content:center;
+    z-index:100; padding:20px;
+  }
+  .overlay.open{ display:flex; }
+  .signin-card{
+    background:var(--surface);
+    border-radius:16px;
+    max-width:380px; width:100%;
+    padding:28px 26px;
+    box-shadow:0 12px 40px rgba(0,0,0,0.2);
+  }
+  .signin-card h3{ margin:0 0 6px; font-size:19px; }
+  .signin-card p{ margin:0 0 18px; font-size:13.5px; color:var(--ink-soft); line-height:1.6; }
+  .signin-roles{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .role-row{
+    border:1px solid var(--line); border-radius:10px;
+    padding:10px 14px; font-size:13.5px; font-weight:500;
+    display:flex; align-items:center; justify-content:space-between;
+    color:var(--ink);
+  }
+  .role-row span.tag{
+    font-size:11px; color:var(--ink-soft); font-weight:600;
+  }
+  .signin-close{
+    width:100%; padding:10px; border-radius:10px; border:none;
+    background:var(--ink); color:#fff; font-weight:600; font-size:14px; cursor:pointer;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 46 46" fill="none">
+          <path d="M4 20 L23 8 L42 20 V38 H4 Z" fill="#F3EFE6" stroke="#2A2622" stroke-width="2" stroke-linejoin="round"/>
+          <rect x="4" y="20" width="18" height="18" fill="var(--gsam)"/>
+          <rect x="24" y="20" width="18" height="18" fill="var(--hg)"/>
+          <rect x="20" y="27" width="6" height="11" fill="#F3EFE6"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <p class="name">GSAM &amp; HG Stores</p>
+        <p class="tag">Two family stores, one neighborhood</p>
+      </div>
+    </div>
+
+    <nav class="mainnav">
+      <a href="#top">Home</a>
+      <a href="#gsam">GSAM Enterprises</a>
+      <a href="#hg">HG Marketing</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="signin-btn" onclick="document.getElementById('signinOverlay').classList.add('open')">Sign In</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div>
+    <h1>Browse what's on the shelves, right now.</h1>
+    <p>GSAM Enterprises and HG Marketing are two family-run stores serving the same neighborhood. Look up items, check what's available, then drop by or call ahead.</p>
+  </div>
+  <div class="hero-badges">
+    <span class="hero-badge"><span class="dot" style="background:var(--gsam)"></span>GSAM — Electronics</span>
+    <span class="hero-badge"><span class="dot" style="background:var(--hg)"></span>HG — General Merchandise</span>
+    <span class="hero-badge">Browsing only — no account needed</span>
+  </div>
+</section>
+
+<main class="stores">
+
+  <!-- GSAM ENTERPRISES -->
+  <div class="store-panel gsam-panel" id="gsam">
+    <div class="awning gsam">
+      <div class="store-heading">
+        <div class="store-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="5" y1="17" x2="19" y2="17"/>
+            <circle cx="12" cy="19.3" r="0.6" fill="#fff"/>
+          </svg>
+        </div>
+        <div>
+          <h2>GSAM Enterprises</h2>
+          <p class="sub">Electronics &amp; appliances</p>
+        </div>
+      </div>
+      <div class="awning-stripes"></div>
+    </div>
+
+    <div class="store-body">
+      <div class="search-row">
+        <input type="text" id="gsamSearch" placeholder="Search phones, chargers, appliances…" oninput="renderGSAM()">
+      </div>
+      <div class="filter-pills" id="gsamFilters">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="Phones">Phones</button>
+        <button class="pill" data-cat="Accessories">Accessories</button>
+        <button class="pill" data-cat="Appliances">Appliances</button>
+      </div>
+      <p class="result-count" id="gsamCount"></p>
+      <div class="product-grid" id="gsamGrid"></div>
+    </div>
+  </div>
+
+  <!-- HG MARKETING -->
+  <div class="store-panel hg-panel" id="hg">
+    <div class="awning hg">
+      <div class="store-heading">
+        <div class="store-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h16l-1.5 12.5a1 1 0 0 1-1 .9H6.5a1 1 0 0 1-1-.9L4 8Z"/>
+            <path d="M8 8V6a4 4 0 0 1 8 0v2"/>
+          </svg>
+        </div>
+        <div>
+          <h2>HG Marketing</h2>
+          <p class="sub">General merchandise</p>
+        </div>
+      </div>
+      <div class="awning-stripes"></div>
+    </div>
+
+    <div class="store-body">
+      <div class="search-row">
+        <input type="text" id="hgSearch" placeholder="Search household, food, hardware…" oninput="renderHG()">
+      </div>
+      <div class="filter-pills" id="hgFilters">
+        <button class="pill active" data-cat="all">All</button>
+        <button class="pill" data-cat="Household">Household</button>
+        <button class="pill" data-cat="Food">Food</button>
+        <button class="pill" data-cat="Hardware">Hardware</button>
+      </div>
+      <p class="result-count" id="hgCount"></p>
+      <div class="product-grid" id="hgGrid"></div>
+    </div>
+  </div>
+
+</main>
+
+<footer id="contact">
+  <div class="footer-inner">
+    <div>
+      <h3><span class="footer-store-dot" style="background:var(--gsam)"></span>GSAM Enterprises</h3>
+      <p>Purok Mabini, Poblacion<br>Cebu City, Central Visayas</p>
+      <p style="margin-top:8px;">Open Mon–Sat, 9AM–7PM</p>
+      <p style="margin-top:8px;">(032) 555-0142 &middot; gsam.enterprises@example.com</p>
+    </div>
+    <div>
+      <h3><span class="footer-store-dot" style="background:var(--hg)"></span>HG Marketing</h3>
+      <p>Corner Rizal &amp; Osmeña St.<br>Cebu City, Central Visayas</p>
+      <p style="margin-top:8px;">Open Mon–Sun, 8AM–8PM</p>
+      <p style="margin-top:8px;">(032) 555-0198 &middot; hg.marketing@example.com</p>
+    </div>
+    <div>
+      <h3>For staff &amp; partners</h3>
+      <p>Owners, employees, and registered delivery clients can sign in using the button at the top of this page.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 GSAM Enterprises &amp; HG Marketing. Locally owned and operated.</span>
+    <span>Prices and availability shown for browsing only.</span>
+  </div>
+</footer>
+
+<!-- Sign-in overlay -->
+<div class="overlay" id="signinOverlay">
+  <div class="signin-card">
+    <h3>Sign in to your account</h3>
+    <p>This area is for people who manage or work with the stores.</p>
+    <div class="signin-roles">
+      <div class="role-row">Store owner <span class="tag">GSAM / HG</span></div>
+      <div class="role-row">Employee <span class="tag">Staff access</span></div>
+      <div class="role-row">Delivery client <span class="tag">Registered only</span></div>
+    </div>
+    <button class="signin-close" onclick="document.getElementById('signinOverlay').classList.remove('open')">Close</button>
+  </div>
+</div>
+
+<script>
+  // ---------- Icon set (flat line icons per category, drawn once, reused) ----------
+  const ICONS = {
+    Phones: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg>`,
+    Accessories: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="16" height="9" rx="2"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/></svg>`,
+    Appliances: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><circle cx="8" cy="6" r="0.6"/></svg>`,
+    Household: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"/><path d="M5 10v9h14v-9"/></svg>`,
+    Food: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v6a2 2 0 0 0 2 2v12"/><path d="M18 2v20"/><path d="M18 2c-2 0-3 2-3 5s1 5 3 5"/></svg>`,
+    Hardware: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.6 2.6-2-2 2.6-2.6Z"/></svg>`
+  };
+
+  // ---------- Product data ----------
+  const gsamProducts = [
+    {name:"Samsung Galaxy A15", cat:"Phones", price:8990, status:"in"},
+    {name:"iPhone 13 (Refurbished)", cat:"Phones", price:21990, status:"low"},
+    {name:"Xiaomi Redmi 12", cat:"Phones", price:6490, status:"in"},
+    {name:"Nokia 105 Classic", cat:"Phones", price:1190, status:"out"},
+    {name:"USB-C Fast Charger 20W", cat:"Accessories", price:349, status:"in"},
+    {name:"Bluetooth Earbuds", cat:"Accessories", price:899, status:"low"},
+    {name:"Assorted Phone Case", cat:"Accessories", price:149, status:"in"},
+    {name:"Power Bank 10,000mAh", cat:"Accessories", price:699, status:"out"},
+    {name:"Electric Stand Fan 16\"", cat:"Appliances", price:1450, status:"in"},
+    {name:"Rice Cooker 1.8L", cat:"Appliances", price:1290, status:"in"},
+    {name:"Microwave Oven 20L", cat:"Appliances", price:3990, status:"low"},
+    {name:"Water Dispenser (Hot/Cold)", cat:"Appliances", price:4590, status:"out"},
+  ];
+
+  const hgProducts = [
+    {name:"Plastic Storage Bin, Large", cat:"Household", price:220, status:"in"},
+    {name:"Broom &amp; Dustpan Set", cat:"Household", price:180, status:"in"},
+    {name:"LED Bulb 9W", cat:"Household", price:85, status:"low"},
+    {name:"Laundry Basket", cat:"Household", price:250, status:"out"},
+    {name:"Canned Sardines (155g)", cat:"Food", price:22, status:"in"},
+    {name:"Instant Noodles, Pack of 5", cat:"Food", price:65, status:"in"},
+    {name:"Well-Milled Rice, 5kg", cat:"Food", price:315, status:"low"},
+    {name:"Cooking Oil, 1L", cat:"Food", price:110, status:"in"},
+    {name:"Claw Hammer", cat:"Hardware", price:195, status:"in"},
+    {name:"Assorted Nails, 1kg", cat:"Hardware", price:130, status:"low"},
+    {name:"Extension Cord, 5m", cat:"Hardware", price:275, status:"out"},
+    {name:"Heavy-Duty Padlock", cat:"Hardware", price:160, status:"in"},
+  ];
+
+  const statusLabel = { in:"In Stock", low:"Low Stock", out:"Out of Stock" };
+
+  let gsamActiveCat = "all";
+  let hgActiveCat = "all";
+
+  function peso(n){
+    return "₱" + n.toLocaleString("en-PH");
+  }
+
+  function cardHTML(p){
+    return `
+      <div class="product-card">
+        <div class="product-thumb">${ICONS[p.cat] || ""}</div>
+        <p class="product-cat">${p.cat}</p>
+        <p class="product-name">${p.name}</p>
+        <div class="product-bottom">
+          <span class="product-price">${peso(p.price)}</span>
+          <span class="badge ${p.status}">${statusLabel[p.status]}</span>
+        </div>
+      </div>`;
+  }
+
+  function renderGrid(products, searchVal, activeCat, gridEl, countEl){
+    const term = searchVal.trim().toLowerCase();
+    const filtered = products.filter(p => {
+      const matchesCat = activeCat === "all" || p.cat === activeCat;
+      const matchesSearch = p.name.toLowerCase().includes(term);
+      return matchesCat && matchesSearch;
+    });
+    countEl.textContent = filtered.length + (filtered.length === 1 ? " item" : " items") + " found";
+    gridEl.innerHTML = filtered.length
+      ? filtered.map(cardHTML).join("")
+      : `<div class="empty-state">No items match your search.</div>`;
+  }
+
+  function renderGSAM(){
+    renderGrid(gsamProducts, document.getElementById('gsamSearch').value, gsamActiveCat,
+      document.getElementById('gsamGrid'), document.getElementById('gsamCount'));
+  }
+  function renderHG(){
+    renderGrid(hgProducts, document.getElementById('hgSearch').value, hgActiveCat,
+      document.getElementById('hgGrid'), document.getElementById('hgCount'));
+  }
+
+  document.getElementById('gsamFilters').addEventListener('click', (e) => {
+    const btn = e.target.closest('.pill');
+    if(!btn) return;
+    gsamActiveCat = btn.dataset.cat;
+    document.querySelectorAll('#gsamFilters .pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    renderGSAM();
+  });
+
+  document.getElementById('hgFilters').addEventListener('click', (e) => {
+    const btn = e.target.closest('.pill');
+    if(!btn) return;
+    hgActiveCat = btn.dataset.cat;
+    document.querySelectorAll('#hgFilters .pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    renderHG();
+  });
+
+  document.getElementById('signinOverlay').addEventListener('click', (e) => {
+    if(e.target.id === 'signinOverlay') e.target.classList.remove('open');
+  });
+
+  renderGSAM();
+  renderHG();
+</script>
+
+</body>
+</html>
